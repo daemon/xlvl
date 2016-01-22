@@ -1,0 +1,19 @@
+# VS
+*.vcxproj
+*.filters
+*.sln
+*.sdf
+*.opendb
+.vs
+resource.h
+*.aps
+*.rc
+
+bin
+lib
+Debug
+Win32
+xlvl.dir
+CMakeFiles
+CMakeCache.txt
+*.cmake
