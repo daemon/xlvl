@@ -3,6 +3,7 @@
 #include <exception>
 #include "AssetLoader.hpp"
 #include "GLImport.hpp"
+#include "ScreenManager.hpp"
 #include "XLvlApplication.hpp"
 
 using namespace xlvl;
@@ -22,6 +23,7 @@ xlvl::XLvlApplication::XLvlApplication()
   if (gl3wInit() == -1)
     throw std::exception("Couldn't initialize gl3w");
   this->_assetLoader = std::make_shared<AssetLoader>("assets/");
+  this->_screenManager = std::move(std::unique_ptr<ScreenManager>(new ScreenManager(this->_window, 60)));
 }
 
 xlvl::XLvlApplication::~XLvlApplication()
@@ -31,9 +33,5 @@ xlvl::XLvlApplication::~XLvlApplication()
 
 void xlvl::XLvlApplication::run()
 {
-  while (!glfwWindowShouldClose(this->_window))
-  {
-    glfwSwapBuffers(this->_window);
-    glfwPollEvents();
-  }
+  this->_screenManager->run();
 }

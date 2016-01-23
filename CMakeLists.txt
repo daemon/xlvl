@@ -21,5 +21,5 @@ if (CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "-Wall -O2 -s -std=c++11")
 endif (CMAKE_COMPILER_IS_GNUCXX)
 
-add_executable(xlvl Main.cpp XLvlApplication.cpp XLvlApplication.hpp ShaderProgram.cpp GLImport.hpp ShaderProgram.hpp)
+add_executable(xlvl Main.cpp XLvlApplication.cpp XLvlApplication.hpp ShaderProgram.cpp GLImport.hpp ShaderProgram.hpp AssetLoader.hpp AssetLoader.cpp ScreenManager.hpp ScreenManager.cpp DrawObject.hpp)
 target_link_libraries(xlvl glfw ${OPENGL_glu_LIBRARY} ${GLFW_LIBRARIES} gl3w)

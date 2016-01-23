@@ -7,6 +7,8 @@
 namespace xlvl
 {
 
+class ScreenManager;
+
 class XLvlApplication
 {
 public:
@@ -17,6 +19,7 @@ public:
 private:
   GLFWwindow *_window;
   std::shared_ptr<AssetLoader> _assetLoader;
+  std::unique_ptr<ScreenManager> _screenManager;
 };
 
 }

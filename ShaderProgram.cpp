@@ -8,7 +8,8 @@ ShaderProgram::ShaderProgram(std::istream &stream, GLenum shaderType)
   while (std::getline(stream, line))
     ss << line;
   this->_shaderId = glCreateShader(shaderType);
-  const char *shaderCStr = ss.str().c_str();
+  std::string str(ss.str());
+  const char *shaderCStr = str.c_str();
   const GLint len[1] = {1};
   glShaderSource(this->_shaderId, 1, &shaderCStr, len);
   glCompileShader(this->_shaderId);
