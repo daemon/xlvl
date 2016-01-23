@@ -1,15 +1,17 @@
 #include <memory>
-#include "AssetLoader.hpp"
+#include "Scene.hpp"
+#include "ShaderProgram.hpp"
 
 namespace xlvl
 {
 
-class IntroMenu
+class IntroMenu : public Scene
 {
 public:
-  IntroMenu(AssetLoader *loader);
+  IntroMenu(std::shared_ptr<AssetLoader> loader);
 private:
-  ShaderProgram _flat2d;
+  void _draw() override;
+  ShaderProgram _defaultProg;
 };
 
 }

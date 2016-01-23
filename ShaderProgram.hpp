@@ -2,14 +2,18 @@
 #include "GLImport.hpp"
 #include <istream>
 #include <utility>
+#include <vector>
 
 class ShaderProgram
 {
 public:
-  ShaderProgram(std::istream &stream, GLenum shaderType);
+  ShaderProgram::ShaderProgram(std::initializer_list<std::pair<std::istream &, GLenum>> shaders);
+  ShaderProgram::ShaderProgram(std::istream &in, GLenum shaderType) : ShaderProgram({{in, shaderType}}) {}
+  ShaderProgram::~ShaderProgram();
   GLint attribLocation(const std::string &name) const;
+  ShaderProgram &operator+(const ShaderProgram &other);
   void use() const;
 private:
-  GLuint _shaderId;
+  std::vector<GLuint> _shaders;
   GLuint _shaderProgram;
 };

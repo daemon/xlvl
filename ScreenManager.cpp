@@ -13,7 +13,7 @@ void xlvl::ScreenManager::run()
     this->_draw();
     auto b = std::chrono::steady_clock::now();
     std::chrono::duration<double, std::milli> dur = b - a;
-    this->_realFps = 1000.0 / dur.count();
+    this->_realFps = static_cast<unsigned int>(1000.0 / dur.count());
     targetDelay = targetDelay * 0.8 + std::max<double>(targetDelay - dur.count(), 0.0) * 0.2;
     glfwSwapBuffers(this->_window);
     glfwPollEvents();
@@ -23,6 +23,7 @@ void xlvl::ScreenManager::run()
 
 void xlvl::ScreenManager::_draw()
 {
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   for (auto &obj : this->_objects)
     obj->draw();
 }
